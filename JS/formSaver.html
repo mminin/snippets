@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<script> //getter API
+// getElementById
+function $id(id) {
+        var element=document.getElementById(id);
+        element.tag = function(tag){
+            return element.getElementsByTagName(tag)
+        };
+	return element;
+}
+</script>
+
+<script>
+function previewFile(){
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+  reader.onload = function() {
+    var text = reader.result;
+    Output(text);
+    fillForm(text);
+  };
+  reader.readAsText(file);
+};
+
+function Output(msg) {
+	var m = $id("messages");
+	m.innerHTML = msg + m.innerHTML;
+};
+
+var jay={};
+var jkeys=[];
+function fillForm(txt) {
+   jay=JSON.parse(txt)
+   jkeys=Object.keys(jay)
+   for (i in jkeys){
+      $id(jkeys[i]).value=jay[jkeys[i]];
+   };
+};
+
+function save() {
+var link = $id("downloadLink");
+link.href = makeTextFile(JSON.stringify(buildDict()));
+link.style.display = 'block';
+};
+
+var textFile = null;
+function makeTextFile(text) {
+    var data = new Blob([text], {type: 'text/plain'});
+    if (textFile !== null) {window.URL.revokeObjectURL(textFile);}; // prevent memory leaks.
+    textFile = window.URL.createObjectURL(data);
+    return textFile;
+};
+
+function buildDict(){
+    listOfFormIds=[for (x of $id("myform").tag("input")) x.id];
+    var dict = {};
+    listOfFormIds.forEach(
+        function(x,i,q){dict[x]=$id(x).value;}
+    );
+    return dict;
+};
+
+</script>
+</head>
+<body>
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" onchange="previewFile()" />
+<p>
+<div id="myform">
+a: <input type="text" id="a" name="a" />
+</p><p>
+b: <input type="text" id="b" name="b" />
+</p>
+</div>
+<div id="messages"></div>
+<button id="save" onclick="save()">Save</button>
+<a download="form.txt" id="downloadLink" style="display: none">Download</a>
+</body>
+</html>
