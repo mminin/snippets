@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<script> //getter API
+// getElementById
+function $id(id) {
+	return document.getElementById(id);
+}
+
+</script>
+
+<script>
+
+previewFile = function (){
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+  reader.onload = function() {
+    var text = reader.result;
+    Output(text);
+  };
+  reader.readAsText(file);
+};
+
+
+function Output(msg) {
+	var m = $id("messages");
+	m.innerHTML = msg + m.innerHTML;
+};
+
+</script>
+
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" onchange="previewFile()" />
+
+
+<div id="messages"></div>
+
+</body>
+</html>
