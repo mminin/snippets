@@ -81,6 +81,8 @@ function makeTextFile(text) {
     textFile = window.URL.createObjectURL(data);
     return textFile;
 };
+//var DEBUGdict={};
+//var DEBUGlistOfFormIds=[];
 function buildDict(){
 //    listOfFormIds=[for (x of $id("form").tag("input")) x.id].concat( [for (x of $id("form").tag("select")) x.id] );
     var listOfFormIds=[];
@@ -92,6 +94,7 @@ function buildDict(){
         q.push(x.id);
     };
     listOfFormIds.concat(q);
+    listOfFormIds=listOfFormIds.concat(q);
 //[for (x of $id("form").tag("input")) x.id].concat( [for (x of $id("form").tag("select")) x.id] );
     var dict = {};
     listOfFormIds.forEach(
@@ -105,6 +108,8 @@ function buildDict(){
         }
     );
     dict.additParams=additParams; /// WILL THIS WORK???
+//    DEBUGdict=dict;
+//    DEBUGlistOfFormIds=listOfFormIds;
     return dict;
 };
 /////////// make form empty
@@ -513,11 +518,15 @@ function remakeAdditForm(){
         var param=additParams[i];
         document.getElementById("AdditionalData").innerHTML+=makeAdditFormElement(param);
     };
+    for (var i=0; i<additParams.length; i++){ // can update selections only after all html is in place for this element div
+        var param=additParams[i];
+        document.getElementById(param.id+"_VM").value=param.vvalue;
+    };
 };
 
 function addAdditionalParameterNew(){
     collectAdditParamInputs();
-    additParams.push({id:additParams.length, pname:"name", ucd:"ucd", desc:"desc", pvalue:"value"});
+    additParams.push({id:additParams.length, pname:"name", ucd:"ucd", desc:"desc", pvalue:"value", vvalue:"MAP"});
     remakeAdditForm();
 };
 
@@ -545,6 +554,7 @@ function collectAdditParamInputs(){
         additParams[i].ucd    = document.getElementById(i+'_ucd').value;
         additParams[i].desc   = document.getElementById(i+'_desc').value;
         additParams[i].pvalue = document.getElementById(i+'_val').value;
+        additParams[i].vvalue = document.getElementById(i+'_VM').value;
     };
 
 };
