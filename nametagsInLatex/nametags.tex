@@ -1,0 +1,101 @@
+\documentclass[a4paper,12pt]{article}%{minimal}
+%\setlength\arraycolsep{5pt}
+%\setlength\tabcolsep{6pt}
+\setlength\arrayrulewidth{0.1mm}
+%\usepackage{multirow}
+\usepackage[a4paper,total={181mm,270mm},left=15mm, top=15mm]{geometry}
+\usepackage{array}
+\pagestyle{empty}
+\usepackage[document]{ragged2e}
+\usepackage{graphicx}
+%\DeclareGraphicsExtensions{.png}
+\usepackage{tabularx}
+\graphicspath{ {graphics/} }
+\usepackage[most]{tcolorbox}
+
+\newcommand{\makeRowThree}[2]{
+            \makeCellOne{#1}
+            & 
+            \makeCellOne{#2} \\ %[49mm]
+}
+
+\newcommand{\makeCellOne}[1]{
+    \begin{minipage}[t][50mm]{8.5cm}
+        \begin{flushright}
+        \hspace*{3cm}\\
+        \includegraphics[width=3cm, trim=0 -0.5cm 0 0]{logoForNametags}
+        \end{flushright}
+        {#1}
+    \end{minipage}
+}
+
+\newcommand{\makeNames}[2]{
+    \begin{center}
+        \begin{minipage}[t][15mm]{8.5cm}
+            \begin{center}
+                \textsc{\LARGE{\textbf{#1}}}
+            \end{center}
+        \end{minipage}\\
+        #2
+    \end{center}
+}
+
+\newcommand{\makeOnePage}[1]{
+\begin{minipage}{17cm}
+\begin{tabular}{ | p{8.5cm} | p{8.5cm} | }
+#1
+\end{tabular}
+\end{minipage}
+\newpage
+}
+
+\begin{document}
+
+\makeOnePage{
+\hline\makeRowThree{
+\makeNames{Namename Name}{China}
+}{
+\makeNames{Namename Namenamenamename Namename}{India}
+}\hline\makeRowThree{
+\makeNames{Namename Namename Namenamenamename}{Ukraine}
+}{
+
+}\hline\makeRowThree{
+
+}{
+
+}\hline\makeRowThree{
+
+}{
+
+}\hline\makeRowThree{
+
+}{
+
+}\hline}
+
+\makeOnePage{
+\hline\makeRowThree{
+\makeNames{Namename Name}{China}
+}{
+\makeNames{Namename Namenamenamename Namename}{India}
+}\hline\makeRowThree{
+\makeNames{Namename Namename Namenamenamename}{Ukraine}
+}{
+
+}\hline\makeRowThree{
+
+}{
+
+}\hline\makeRowThree{
+
+}{
+
+}\hline\makeRowThree{
+
+}{
+
+}\hline}
+
+\end{document}
+
