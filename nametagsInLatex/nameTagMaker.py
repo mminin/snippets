@@ -78,18 +78,13 @@ makeDataRows=lambda pd:[makeDataRow(pd,i) for i in range(5)]
 makePageTex=lambda pd: "\\makeOnePage{\n"+''.join(row.substitute(x) for (x) in makeDataRows(pd))+"\\hline}"
 preprocPageDataList=lambda datalist: [[datalist[::2][i],datalist[1::2][i]] for i in range(len(datalist)//2)]
 
-pageData=[['a','b'],['c','d'],['e','f'],['g','h'],['i','j'],['k','l'],['m','n'],['o','p'],['q','r'],['s','t']]
-dt=[[pageData[::2][i],pageData[1::2][i]] for i in range(5)]
-
 import csv
-#with open('nameList.csv') as inCSV: #DEBUG
 with open(sys.argv[1]) as inCSV:
     dataAll=list(csv.reader(inCSV))
 
 dt=dataAll+[['','']]*(10%(len(dataAll)%10))
 dataPages=[dt[i*10:(i+1)*10] for i in range(len(dt)//10)]
 
-#with open('output.tex','w') as out: #DEBUG
 with open(sys.argv[2],'w') as out:
     out.write(texHeader)
     out.write('\n\n'.join([makePageTex(preprocPageDataList(dataPage)) for dataPage in dataPages]))
