@@ -6,8 +6,8 @@
 #To edit style symply edit variable texHeader 
 
 from string import Template
-import copy
 import sys
+import csv
 
 texHeader=r"""\documentclass[a4paper,12pt]{article}%{minimal}
 %\setlength\arraycolsep{5pt}
@@ -78,7 +78,6 @@ makeDataRows=lambda pd:[makeDataRow(pd,i) for i in range(5)]
 makePageTex=lambda pd: "\\makeOnePage{\n"+''.join(row.substitute(x) for (x) in makeDataRows(pd))+"\\hline}"
 preprocPageDataList=lambda datalist: [[datalist[::2][i],datalist[1::2][i]] for i in range(len(datalist)//2)]
 
-import csv
 with open(sys.argv[1]) as inCSV:
     dataAll=list(csv.reader(inCSV))
 
