@@ -8,7 +8,7 @@ import json
 import urllib
 from xml.dom.minidom import parseString
 import requests
-from pprint import pprint
+#from pprint import pprint
 import shapely.wkt
 
 if len(sys.argv)!=7: print("Incorrect number of arguments!\nUsage:\
