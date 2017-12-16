@@ -8,5 +8,4 @@ data=np.asarray(z)
 
 hdu = fits.PrimaryHDU(data)
 hdulist = fits.HDUList([hdu])
-hdu = fits.PrimaryHDU(data)
 hdulist.writeto('test02.fits')
