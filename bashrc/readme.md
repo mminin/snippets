@@ -1,4 +1,4 @@
-# Some cool this to add to your bashrc:
+# Some cool things to add to your bashrc:
 ## Track time with this short function (log your activity by adding this to your ~/.bashrc):
 ```
 timesheet() {
