@@ -8,7 +8,7 @@ With bash make previews by resizing/resampling all big photos in a directory:
 With python read a CSV file containing multi-character separator (e.g. ',\t'):
 ```
 import csv
-with open("SearchResults.csv") as f:
-    r=csv.reader((_.replace(',\t',',') for _ in f), delimiter=',')
-    CSV_header,CSV_data=next(r),[*r]
+with open("SearchResults.csv") as _:
+    _=csv.reader((_.replace(',\t',',') for _ in _), delimiter=',')
+    CSV_header,CSV_data=next(_),[*_]
 ```
