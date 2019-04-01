@@ -12,3 +12,8 @@ with open("SearchResults.csv") as _:
     _=csv.reader((_.replace(',\t',',') for _ in _), delimiter=',')
     CSV_header,CSV_data=next(_),[*_]
 ```
+Same but return an ordered dict instead of list:
+
+    with open("SearchResults.csv") as _: CSV_dict=[*csv.DictReader(_.replace(',\t',',') for _ in _)]
+
+--------------
