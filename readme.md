@@ -17,3 +17,10 @@ Same but return an ordered dict instead of list:
     with open("SearchResults.csv") as _: CSV_dict=[*csv.DictReader(_.replace(',\t',',') for _ in _)]
 
 --------------
+With python remove multiple characters from a string:
+```
+myString='        BAND_BIN_BAND_NUMBER = (4, 9, 10)'
+toRemove='( )'
+print(''.join([{_:'' for _ in toRemove}.get(_, _) for _ in myString]))
+#Output: 'BAND_BIN_BAND_NUMBER=4,9,10'
+--------------
