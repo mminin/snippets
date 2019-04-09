@@ -23,4 +23,12 @@ myString='        BAND_BIN_BAND_NUMBER = (4, 9, 10)'
 toRemove='( )'
 print(''.join([{_:'' for _ in toRemove}.get(_, _) for _ in myString]))
 #Output: 'BAND_BIN_BAND_NUMBER=4,9,10'
+```
+--------------
+Remove double spaces from file names in bash:
+```
+while read i; do mv "${i}" "$(echo ${i} | sed 's/  / /g')"; done << EOF
+$(ls)
+EOF
+```
 --------------
