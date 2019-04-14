@@ -32,3 +32,5 @@ $(ls)
 EOF
 ```
 --------------
+Docker build and run image:
+```docker build . -t <imageName>:<versionTag>;docker run -it $_```
