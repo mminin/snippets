@@ -37,3 +37,8 @@ Docker build and run image:
 docker build . -t <imageName>:<versionTag>;docker run -it $_
 ```
 --------------
+
+To check version of the python package:
+```
+python -c "import csv as _; print(_.__version__)"
+```
