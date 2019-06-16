@@ -37,8 +37,25 @@ Docker build and run image:
 docker build . -t <imageName>:<versionTag>;docker run -it $_
 ```
 --------------
-
 To check version of the python package:
 ```
 python -c "import csv as _; print(_.__version__)"
+```
+--------------
+Unzip all files into one directory and replace nested folders with underscore prefexes (flatten tree).
+```
+# first unzip into directories with the same name as archive, then remove zips
+for i in $(ls *.zip);
+ do mkdir ${i%.*};
+ unzip $i -d ${i%.*};
+ rm $i;
+done;
+
+# now walk the tree and move the files
+for i in $(tree -Fif | grep -v /$ | grep /);
+ do mv $i $(echo $i | tr '/' '_' | sed 's/^..//');
+done
+
+# remove all directories
+rm -r $(ls -d */)
 ```
