@@ -59,3 +59,8 @@ done
 # remove all directories
 rm -r $(ls -d */)
 ```
+--------------
+To use pprint instead of print everywhere in py3:
+```
+from pprint import pprint as print
+```
