@@ -64,3 +64,10 @@ To use pprint instead of print everywhere in py3:
 ```
 from pprint import pprint as print
 ```
+--------------
+Print keys in a json file from bash
+```
+python3 -c "import json; f=open('/path/to/file'); [print(_) for _ in json.load(f).keys()]; f.close()"
+```
+--------------
+
