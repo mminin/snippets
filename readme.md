@@ -104,7 +104,8 @@ echo "var base64Data=[" > $2
 base64 $1 | while read -r; do printf '"%s",\n' "$REPLY"; done >> $2
 echo "].join(\"\");" >> $2
 ```
-
 --------------
-
-
+Flatten nested  list:
+```
+[i for j in [[1,2],[3,4],[5,6]] for i in j]
+```
