@@ -71,9 +71,10 @@ python3 -c "import json; f=open('/path/to/file'); [print(_) for _ in json.load(f
 ```
 --------------
 To embed images in html: 
+
 1. Convert image to base64
 ```
-base64 market-access-map-us-only.png > market-access-map-us-only.png.base64
+base64 someImage.png > someImage.png.base64
 ```
 2. Place code into the page like so:
 ```
@@ -96,3 +97,4 @@ for (i = 0; i < x.length; i++) {
 //  x[i].style.backgroundImage = img;
 } 
 ```
+--------------
