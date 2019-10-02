@@ -97,4 +97,14 @@ for (i = 0; i < x.length; i++) {
 //  x[i].style.backgroundImage = img;
 } 
 ```
+To make this directly usable in JS, use the following script
+```
+#!/bin/bash
+echo "var base64Data=[" > $2
+base64 $1 | while read -r; do printf '"%s",\n' "$REPLY"; done >> $2
+echo "].join(\"\");" >> $2
+```
+
 --------------
+
+
