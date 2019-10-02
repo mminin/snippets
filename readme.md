@@ -70,4 +70,29 @@ Print keys in a json file from bash
 python3 -c "import json; f=open('/path/to/file'); [print(_) for _ in json.load(f).keys()]; f.close()"
 ```
 --------------
+To embed images in html: 
+1. Convert image to base64
+```
+base64 market-access-map-us-only.png > market-access-map-us-only.png.base64
+```
+2. Place code into the page like so:
+```
+<img src="data:image/jpg;base64,
+{BASE 64 IMAGE DATA}
+" style="width:100%" />
+```
+3. In case the image repeats multiple times on the page use JS:
+```
+var base64Data=[
+"/9j/4AAQSkZJRgABAQEASwBLAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcG",
+"a1Srt2/zPz3iTi1U74XAv3usu3kvPz6dNdn3V3LfXMk00jyzSsWd3OWY+pNR0UV7yR+ZNtu7Ciii",
+"gQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH//Z"
+].join("");
 
+var img = "url('data:image/png;base64, "+base64Data + "')";
+var x = document.getElementsByClassName("header");
+var i;
+for (i = 0; i < x.length; i++) {
+//  x[i].style.backgroundImage = img;
+} 
+```
