@@ -109,3 +109,8 @@ Flatten nested  list:
 ```
 [i for j in [[1,2],[3,4],[5,6]] for i in j]
 ```
+--------------
+Get links from file
+```
+cat index.html | grep -o -P '(?<=href\=\").*(?=\")'
+```
