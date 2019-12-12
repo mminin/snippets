@@ -124,3 +124,26 @@ Create python anonymous class object:
 ```
 f=type("", (), {})()
 ```
+--------------
+Rotate point around another point
+```
+def rotatePnt(org,pt,th):
+    #ensure points are numpy arrays
+    org=np.asarray(org)
+    pt=np.asarray(pt)
+    # translate point to the origin
+    pt=pt-org
+    #apply rotation
+    rotationMtrx=np.asarray([[np.cos(th),-np.sin(th)],[np.sin(th),np.cos(th)]])
+    pt=np.dot(rotationMtrx,pt)
+    #restore point
+    pt=pt+org
+    return pt
+
+## Example use
+testLine=[[1,1],[4,3],[5,7],[8,1],[4,3]]
+unwrapLine=lambda _: [[_[0] for _ in _],[_[1] for _ in _]]
+plt.plot(*unwrapLine(testLine))
+for i in range(10,360,10):
+    plt.plot(*unwrapLine([rotatePnt([1,1],_,np.radians(i)) for _ in testLine]))
+```
