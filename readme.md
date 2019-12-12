@@ -119,4 +119,8 @@ Plot geochemistry in QGIS replacing less than values with 0's:
 ```
 if( regexp_match( "Au_x_ppb", '\\s<' ) ,0, to_real("Au_x_ppb"))/if( regexp_match( "Ag_ppm", '\\s<' ) ,0, to_real("Ag_ppm"))
 ```
-
+--------------
+Create python anonymous class object:
+```
+f=type("", (), {})()
+```
