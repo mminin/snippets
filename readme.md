@@ -147,3 +147,5 @@ plt.plot(*unwrapLine(testLine))
 for i in range(10,360,10):
     plt.plot(*unwrapLine([rotatePnt([1,1],_,np.radians(i)) for _ in testLine]))
 ```
+# Clean read-only filesystem error on usb:
+sudo dosfsck -r -v /dev/sde1
