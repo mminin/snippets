@@ -2,35 +2,48 @@
 
 import csv
 import sys
+import functools
 
-InFile1=sys.argv[1]
-keyCol1=sys.argv[2]
-InFile2=sys.argv[3]
-keyCol2=sys.argv[4]
-InFile3=sys.argv[5]
-keyCol3=sys.argv[6]
+InFiles=[_ for _ in sys.argv[1::2]]
+InKeys=[_ for _ in sys.argv[2::2]]
 
-f1=[]
-f2=[]
-f3=[]
-with open(InFile1) as _: f1=list(csv.DictReader(_))
-with open(InFile2) as _: f2=list(csv.DictReader(_))
-with open(InFile3) as _: f3=list(csv.DictReader(_))
-fields=list(f1[0].keys()) + [
-    _ for _ in f2[0].keys() if _ != keyCol2] + [
-    _ for _ in f3[0].keys() if _ != keyCol3]
+fs=[]
 
-allKeys={_[keyCol1] for _ in f1}.union(
-    {_[keyCol2] for _ in f2}).union({_[keyCol3] for _ in f3})
+for InFile in InFiles:
+    with open(InFile) as _: fs.append(list(csv.DictReader(_)))
+
+filesAndKeys=list(zip(fs, InKeys))
+
+fields=list(fs[0][0].keys())
+print(fields)
+
+getNewKeys=lambda f,k: [_ for _ in f[0].keys() if _ != k]
+
+fields += functools.reduce(lambda a,b:a+b,[getNewKeys(*_) for _ in filesAndKeys[1:]])
+
+print(fields)
+
+allKeys=set.union(*[{_[k] for _ in f} for f,k in filesAndKeys])
+
+
+print(filesAndKeys[0][1])
+
 
 def joinRow(k):
-    tmp=[_ for _ in f1 if _[keyCol1]==k][0]
-    tmp.update([_ for _ in f2 if _[keyCol2]==k][0])
-    tmp.update([_ for _ in f3 if _[keyCol3]==k][0])
+    print(k)
+    #tmp=[_ for _ in filesAndKeys[0][0] if _[filesAndKeys[0][1]]==k][0]
+    tmp=dict()
+    print(tmp)
+#    for f, InKey in filesAndKeys[1:]:
+    for f, InKey in filesAndKeys:
+        print(InKey)
+        print('DEBUG %s'%([_ for _ in f if _[InKey]==k][0]))
+        tmp.update([_ for _ in f if _[InKey]==k][0])
     return tmp
 
 with open("output.csv","w") as f:
     w=csv.DictWriter(f, fieldnames=fields)
     w.writeheader()
     for k in allKeys:
+        print(k)
         w.writerow(joinRow(k))
