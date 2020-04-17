@@ -152,3 +152,13 @@ Clean read-only filesystem error on usb:
 ```
 sudo dosfsck -r -v /dev/sde1
 ```
+--------------
+Convert xlsx to csv:
+```
+for i in $(seq 1 19); do xlsx2csv input.xlsx -s $i > csv/$i.csv;done
+```
+Convert xls to csv:
+```
+for i in $(seq 1 19); do xls2csv input.xls -s $i > csv/$i.csv;done
+
+```
