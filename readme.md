@@ -162,3 +162,8 @@ Convert xls to csv:
 for i in $(seq 1 19); do xls2csv input.xls -s $i > csv/$i.csv;done
 
 ```
+--------------
+Replace "< " with "-" in a csv:
+```
+for i in $(ls *.csv); do sed -i 's/< /-/g' $i;done
+```
