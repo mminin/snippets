@@ -167,3 +167,7 @@ Replace "< " with "-" in a csv:
 ```
 for i in $(ls *.csv); do sed -i 's/< /-/g' $i;done
 ```
+Replace "> some_value" with "-888" in csv (replace overlimit with "-888"):
+```
+sed -i 's/> [0-9\.][0-9\.]*/-888/g' AR-ICP.csv 
+```
