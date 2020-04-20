@@ -175,3 +175,8 @@ Replace "> some_value" with "-888" in csv (replace overlimit with "-888"):
 ```
 sed -i 's/> [0-9\.][0-9\.]*/-888/g' AR-ICP.csv 
 ```
+--------------
+Calculate sample id's from grid X/Y coordinates in QGIS3:
+```
+if(length("X")<3,lpad("X",3,0),"X") +'E '+to_string(if(Y>=0,lpad(abs("Y"),3,0),abs("Y")))+if("Y"<0,'S','N')
+```
