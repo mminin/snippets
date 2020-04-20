@@ -162,6 +162,10 @@ Convert xls to csv:
 for i in $(seq 1 19); do xls2csv input.xls -s $i > csv/$i.csv;done
 
 ```
+Convert ods to csv:
+```
+libreoffice --headless --convert-to csv --outdir csv *
+```
 --------------
 Replace "< " with "-" in a csv:
 ```
