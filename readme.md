@@ -180,3 +180,8 @@ Calculate sample id's from grid X/Y coordinates in QGIS3:
 ```
 if(length("X")<3,lpad("X",3,0),"X") +'E '+to_string(if(Y>=0,lpad(abs("Y"),3,0),abs("Y")))+if("Y"<0,'S','N')
 ```
+--------------
+List unique headers in a several numbered folders containing multiple csv tables:
+```
+head -qn 1 tableGroupNumber*/* | sort | uniq
+```
