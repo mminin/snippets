@@ -183,5 +183,9 @@ if(length("X")<3,lpad("X",3,0),"X") +'E '+to_string(if(Y>=0,lpad(abs("Y"),3,0),a
 --------------
 List unique headers in a several numbered folders containing multiple csv tables:
 ```
-head -qn 1 tableGroupNumber*/* | sort | uniq
+head -qn 1 tableGroupNumber*/* | sort | uniq > uniqueHeaders.csv
+```
+Combine unique headers in bash with python while preserving the order (new keys are added to the end of the list):
+```
+python3 -c "import csv; from functools import reduce; f=open(\"uniqueHeaders.csv\"); rows=list(csv.reader(f)); result=reduce(lambda a,b: a+(list(set(b)-set(a))),rows); print(\",\".join(result))"
 ```
