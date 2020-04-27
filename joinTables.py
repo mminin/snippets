@@ -1,4 +1,4 @@
-## This script joins three csv files based on a common field
+## This script joins two or more csv files based on a common field
 
 import csv
 import sys
