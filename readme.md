@@ -189,3 +189,9 @@ Combine unique headers in bash with python while preserving the order (new keys 
 ```
 python3 -c "import csv; from functools import reduce; f=open(\"uniqueHeaders.csv\"); rows=list(csv.reader(f)); result=reduce(lambda a,b: a+(list(set(b)-set(a))),rows); print(\",\".join(result))"
 ```
+--------------
+Check if a CSV file has duplicate values in the first column:
+```
+sort input.csv | cut -d "," -f1 | uniq -d
+```
+
