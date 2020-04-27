@@ -194,4 +194,7 @@ Check if a CSV file has duplicate values in the first column:
 ```
 sort input.csv | cut -d "," -f1 | uniq -d
 ```
-
+Cut out the first 3 columns from a CSV (assuming no data values has commas):
+```
+cut -d "," -f 1-3 input.csv > output.csv
+```
