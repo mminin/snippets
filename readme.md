@@ -198,3 +198,9 @@ Cut out the first 3 columns from a CSV (assuming no data values has commas):
 ```
 cut -d "," -f 1-3 input.csv > output.csv
 ```
+--------------
+Replace space with underscore between two numbers only if the second number is followed by a column (useful for cleaning date-time fields in CSV):
+```
+sed 's/\([0-9]\)[[:space:]]\([0-9]*[0-9]:\)/\1_\2/g'
+```
+
