@@ -203,4 +203,9 @@ Replace space with underscore between two numbers only if the second number is f
 ```
 sed 's/\([0-9]\)[[:space:]]\([0-9]*[0-9]:\)/\1_\2/g'
 ```
-
+--------------
+Increment feature attribute default value by certain number on feature creation in QGIS3:
+(This will default to "+150E" upon creation of 264th point, "+200E" upon creation of 265th point, and so on)
+```
+ '+'+to_string((count( 'YourLayerName')-260)*50)+'E'
+```
