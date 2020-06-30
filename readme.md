@@ -209,3 +209,9 @@ Increment feature attribute default value by certain number on feature creation 
 ```
  '+'+to_string((count( 'YourLayerName')-260)*50)+'E'
 ```
+--------------
+Remove dirty byte from CSV file:
+```
+LC_CType=C sed -i -e's/\xb0//g' ./myfile.csv
+```
+
