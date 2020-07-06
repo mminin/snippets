@@ -214,4 +214,12 @@ Remove dirty byte from CSV file:
 ```
 LC_CType=C sed -i -e's/\xb0//g' ./myfile.csv
 ```
-
+Alternatively you can in Python use 
+```
+open(file, errors='ignore')
+```
+--------------
+Make ordered set:
+```
+makeOrderedSet=lambda _: list(OrderedDict.fromkeys(_).keys())
+```
