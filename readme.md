@@ -223,3 +223,11 @@ Make ordered set:
 ```
 makeOrderedSet=lambda _: list(OrderedDict.fromkeys(_).keys())
 ```
+--------------
+To reduce array of bool in Python, use:
+```
+from functools import reduce
+from operator import or_, and_
+reduce(or_, [_ for _ in arrayOfBool])
+```
+
