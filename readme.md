@@ -221,6 +221,7 @@ open(file, errors='ignore')
 --------------
 Make ordered set:
 ```
+from collections import OrderedDict
 makeOrderedSet=lambda _: list(OrderedDict.fromkeys(_).keys())
 ```
 --------------
