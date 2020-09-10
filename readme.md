@@ -166,6 +166,12 @@ Convert ods to csv:
 ```
 libreoffice --headless --convert-to csv --outdir csv *
 ```
+
+Grep through a list of xlsx:
+```
+for i in *.xlsx; do xlsx2csv "$i" -s 3 | grep 3420151; done
+```
+
 --------------
 Replace "< " with "-" in a csv:
 ```
