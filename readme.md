@@ -237,4 +237,22 @@ from functools import reduce
 from operator import or_, and_
 reduce(or_, [_ for _ in arrayOfBool])
 ```
-
+--------------
+To split a list in two on first occurence of specific condition:
+```
+def splitListOnCondition(sourceList,condition):
+    a=[]
+    b=sourceList
+    while True:
+        z=b.pop(0)
+        if condition(z):
+            b.insert(0,z)
+            break
+        a.append(z)
+    return a,b
+```
+Usage:
+```
+>>> splitListOnCondition(['a','b','c','d','e'], lambda z: z=='c')
+(['a', 'b'], ['c', 'd', 'e'])
+```
