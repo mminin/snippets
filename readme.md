@@ -240,9 +240,10 @@ reduce(or_, [_ for _ in arrayOfBool])
 --------------
 To split a list in two on first occurence of specific condition:
 ```
+import copy
 def splitListOnCondition(sourceList,condition):
     a=[]
-    b=sourceList
+    b=copy.deepcopy(sourceList)
     while True:
         z=b.pop(0)
         if condition(z):
