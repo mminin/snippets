@@ -88,8 +88,8 @@ def getAllGranules(allHoles):
 
 allGranules=getAllGranules(allHoles)
 
-with open('output.csv','w') as f:
-    w=csv.DictWriter(f,fieldnames=fieldnames)
+with open('output.csv','w', newline='') as f:
+    w=csv.DictWriter(f,fieldnames=fieldnames, lineterminator=os.linesep)
     w.writeheader()
     for granule in allGranules:
         w.writerow(granule)
