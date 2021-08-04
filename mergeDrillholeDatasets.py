@@ -1,5 +1,6 @@
 # This script will merge well logs datasets by splitting logs into unique segments 
-# based on overlapping depth intervals:
+# based on overlapping depth intervals, it assumes there key columns are named as
+# HOLE_ID, From_m, To_m
 
 import collections
 
