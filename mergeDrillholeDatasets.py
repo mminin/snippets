@@ -1,6 +1,6 @@
 # This script will merge well logs datasets by splitting logs into unique segments 
 # based on overlapping depth intervals, it assumes there key columns are named as
-# HOLE_ID, From_m, To_m
+# HOLE_ID, From_m, To_m (This can be edited in the script settings)
 # The source data should be in directory called "input"
 # the output would be saved as output.csv
 
