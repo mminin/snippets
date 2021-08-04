@@ -9,7 +9,14 @@ import collections
 import csv
 import os
 
+# SETTINGS
+colname_HoleID='HOLE_ID'
+colname_From='From_m'
+colname_To='From_to'
+
 filenames=os.listdir('input')
+
+
 
 def getFData(filenames):
     fdata=[]
@@ -34,19 +41,19 @@ def getFieldnames(fdata):
 fieldnames=getFieldnames(fdata)
 
 # Get all unique holes
-allHoles=list({_ for _ in [[_['HOLE_ID'] for _ in q] for q in fdata] for _ in _})
+allHoles=list({_ for _ in [[_[colname_HoleID] for _ in q] for q in fdata] for _ in _})
 allHoles.sort()
 
 #for every hole we must see which unique depths exist:
 
-getAllFromDepths=lambda HoleID: {w['From_m'] for s in fdata for w in s if w['HOLE_ID']==HoleID}
-getAllToDepths=lambda HoleID: {w['To_m'] for s in fdata for w in s if w['HOLE_ID']==HoleID}
+getAllFromDepths=lambda HoleID: {w[colname_From] for s in fdata for w in s if w[colname_HoleID]==HoleID}
+getAllToDepths=lambda HoleID: {w[colname_To] for s in fdata for w in s if w[colname_HoleID]==HoleID}
 
 getAllDepths=lambda HoleID:set.union(getAllFromDepths(HoleID),getAllToDepths(HoleID))
 
 getAllDepthsSorted=lambda _: sorted(list(getAllDepths(_)),key=lambda _: float(_))
 
-getAllDataForHoleID=lambda HoleID: [[_ for _ in q  if _['HOLE_ID']==HoleID] for q in fdata]
+getAllDataForHoleID=lambda HoleID: [[_ for _ in q  if _[colname_HoleID]==HoleID] for q in fdata]
 
 ## Then for each interval there should be only one 
 ## unique match in each of the tables
@@ -54,11 +61,11 @@ getAllDataForHoleID=lambda HoleID: [[_ for _ in q  if _['HOLE_ID']==HoleID] for 
 ## For each of the holes.
 ## We should do this one hole at a time...
 def getGranule(HoleData, start, end):
-    extract=[[_ for _ in z if float(_['From_m'])<=float(start) and float(_['To_m'])>=float(end)] for z in HoleData]
+    extract=[[_ for _ in z if float(_[colname_From])<=float(start) and float(_[colname_To])>=float(end)] for z in HoleData]
     d1 = collections.OrderedDict([])
     for i in [_ for _ in extract if _!=[]]:
         d1.update(i[0])
-    d2 = collections.OrderedDict([('From_m', start), ('To_m', end)])
+    d2 = collections.OrderedDict([(colname_From, start), (colname_To, end)])
     d1.update(d2)
     return d1
 
