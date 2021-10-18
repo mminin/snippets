@@ -6,6 +6,8 @@ missing_needles=needles_set.difference(haystack)
 ```
 Use following
 ```
+sort haystack | uniq > haystack.sorted
+sort needles_set | uniq > needles_set.sorted
 diff haystack.sorted needles_set.sorted | grep '^>' | sed 's/^>\ //' > missing_needles
 ```
 -------------
