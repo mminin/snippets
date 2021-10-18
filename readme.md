@@ -1,5 +1,14 @@
 # bits and pieces
 
+With bash compare files to see which lines present in one but not another, similar to python's 
+```
+missing_needles=needles_set.difference(haystack)
+```
+Use following
+```
+diff haystack.sorted needles_set.sorted | grep '^>' | sed 's/^>\ //' > missing_needles
+```
+-------------
 With bash make previews by resizing/resampling all big photos in a directory:
 
      for f in 0_ALL-PHOTOS/*.JPG; do s=${f##*/}; convert 0_ALL-PHOTOS/${s} -resize 200 0_ALL_PHOTOS_SMALL/${s%.*}_browse.png; done;
