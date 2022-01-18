@@ -268,3 +268,12 @@ Usage:
 >>> splitListOnCondition(['a','b','c','d','e'], lambda z: z=='c')
 (['a', 'b'], ['c', 'd', 'e'])
 ```
+--------------
+In bash copy file into folder with a datestamp:
+```
+#/bin/bash
+mkdir ~/bak/$(date "+%Y%m%d_%H%M%S")
+cp /path/to/django/code/mysite/db.sqlite3 $_
+```
+
+
