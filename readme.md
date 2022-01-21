@@ -271,7 +271,7 @@ Usage:
 --------------
 In bash copy file into folder with a datestamp:
 ```
-#/bin/bash
+#!/bin/bash
 mkdir ~/bak/$(date "+%Y%m%d_%H%M%S")
 cp /path/to/django/code/mysite/db.sqlite3 $_
 ```
