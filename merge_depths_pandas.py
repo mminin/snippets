@@ -17,7 +17,7 @@ slave_table_path=sys.argv[2]
 right_suffix=sys.argv[3]
 result_table_path=sys.argv[4]
 
-FIELD_HOLE_ID='HOLE_ID'
+FIELD_HOLE_ID='hole_id'
 
 
 
@@ -49,8 +49,8 @@ def getAllDepts(ldf):
 def merge_table(master, slave):
     master['my_master_index']=master.index
     slave['my_slave_index']=slave.index
-    master_subset=master[['HOLE_ID', 'from_m', 'to_m','my_master_index']].copy()
-    slave_subset=slave[['HOLE_ID', 'from_m', 'to_m','my_slave_index']].copy()
+    master_subset=master[[FIELD_HOLE_ID, 'from_m', 'to_m','my_master_index']].copy()
+    slave_subset=slave[[FIELD_HOLE_ID, 'from_m', 'to_m','my_slave_index']].copy()
     merged_df=pd.merge(master_subset, slave_subset, how='inner', on=[FIELD_HOLE_ID],
                        suffixes=('', right_suffix), copy=False)
     bool_series = (merged_df['from_m']>=merged_df['from_m%s'%right_suffix]) & (merged_df['to_m']<=merged_df['to_m%s'%right_suffix])
@@ -62,10 +62,10 @@ def merge_table(master, slave):
     #merged_df=filter_bigdata_by_chunks(merged_df, bool_series)
     merged_df=merged_df[bool_series]
     merged_df=pd.merge(merged_df, master, how='inner', on=['my_master_index'], suffixes=('', right_suffix), copy=False)
-    merged_df.drop(columns=['HOLE_ID%s'%right_suffix, 'from_m%s'%right_suffix, 'to_m%s'%right_suffix], inplace=True)
+    merged_df.drop(columns=['%s%s'%(FIELD_HOLE_ID,right_suffix), 'from_m%s'%right_suffix, 'to_m%s'%right_suffix], inplace=True)
     merged_df.drop(columns=['my_master_index'], inplace=True)
     merged_df=pd.merge(merged_df, slave, how='inner', on=['my_slave_index'], suffixes=('', right_suffix), copy=False)
-    merged_df.drop(columns=['HOLE_ID%s'%right_suffix, 'from_m%s'%right_suffix, 'to_m%s'%right_suffix], inplace=True)
+    merged_df.drop(columns=['%s%s'%(FIELD_HOLE_ID,right_suffix), 'from_m%s'%right_suffix, 'to_m%s'%right_suffix], inplace=True)
     merged_df.drop(columns=['my_slave_index'], inplace=True)
     #print(merged_df.columns)
     return merged_df.drop_duplicates()
